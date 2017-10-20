@@ -21,8 +21,42 @@ function initMap() {
       position: latLng,
       map: map
     });
+
     // recenter the map to where the marker was pinned
     map.panTo(latLng);
+
+       //when the marker is clicked, a box opens
+    google.maps.event.addListener(map, 'click', function(event) {
+      placeMarker(map, event.latLng);
+    });
+
+    function placeMarker(map, location) {
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map
+      });
+
+      var infowindow = new google.maps.InfoWindow({
+        content: 'Latitude: ' + location.lat() +
+        '<br>Longitude: ' + location.lng()
+      });
+
+      infowindow.open(map, marker);
+    }
+      
   }
-  
+
 }
+  
+    //Upon submitting a new trip via form, adds to database
+    //then renders a new trip div on user's page
+$('#trip-form').submit(function(event) {
+    event.preventDefault();
+    var formData = $(this).serialize();
+    console.log(formData);
+    $.post('/trips', formData, function(trip) {
+      // renderNewTrip(trip);
+      console.log(trip);
+    });
+    $(this).trigger("reset");
+  });

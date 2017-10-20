@@ -12,6 +12,10 @@ body {
 	margin: 0 auto;
 }
 
+.tripForm {
+	width: 300px;
+}
+
 #map {
 	height: 400px;
 	width: 50%;

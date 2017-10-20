@@ -1,28 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Welcome</title>
+  <!-- Bootstrap styling -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Style sheet -->
+  <link rel="stylesheet" href="../../styles/styleUser.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+
+    <!-- Vendor Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 </head>
 <body>
+      <!-- Navigation bar at top -->
+  <div class = 'container'>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <span class="navbar-brand">Wanderlist</span>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">My Places</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  </div>
 
-  I am a user page
-
-<div class="map-color">    
+      <!-- This is where the map will populate -->
+  <div class="map-color">    
     <div id="map"></div>
   </div>
+
+        <!-- Users fill out a new vacation form -->
+    <section class="container tripForm">
+        <form action="/trips" method="POST" id="trip-form">
+          <input type="text" placeholder="What city do you want to go to?" name="city"><br>
+          <input type="text" placeholder="What sights do you want to see?" name="sights"><br>
+          <input type="text" placeholder="Any special foods you want to eat?" name="foods"><br>
+          <input type="text" placeholder="Any special activities?" name="activities"><br>
+          <input type="submit">
+        </form>
+    </section>
 
     <!-- the users saved trip cards populate here -->
   <div id="tripcards"></div>
 
  
+      <!-- Javascript -->
+    <script src="./scripts/app.js"></script>
+
       <!-- Google map scripts -->
-    <script src="./public/scripts/app.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8MjE8GAbJYYoJl77bJckRqYvANrVt1D8&callback=initMap">
     </script>
 
     <!-- Jquery -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
     <!-- Bootstrap script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
