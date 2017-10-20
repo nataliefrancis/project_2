@@ -1,4 +1,4 @@
-<% include ./partials/header.ejs %>
+<% include ./partials/headerIndex.ejs %>
 
 <!-- Main Bootstrap container -->
   <div class="container-fluid">
@@ -35,28 +35,25 @@
 
   <p>The bucket list for those who love to wander</p>
 
-<!-- <div class = "form-row"> -->
-      <!--Left page, signup form -->
+<div class = "form-row"> <!-- Login and Signup buttons -->
+
     <div class = "col-6">
       <div class = "signup-form">
-        <h2>Sign up</h2>
         <form method="post" action="/signup">
           <button type="submit" class="btn btn-primary">Sign up</button>
         </form>
       </div>
     </div>
 
-       <!--Right page, login -->
     <div class = "col-6">
       <div class = "login-form">
-        <h2>Login</h2>
         <form method="post" action="/login">
           <button type="submit" class="btn btn-success">Login</button>
         </form>
       </div>
     </div>
 
-  </div>
+</div>
 
       <!-- bottom of page -->
     <div class ="row justify-content-center">

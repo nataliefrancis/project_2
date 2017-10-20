@@ -9,7 +9,15 @@ var methodOverride = require('method-override');
 var passport = require("passport");
 var usersController = require('../controllers/users');
 var staticsController = require('../controllers/statics');
+var pageController = require('../controllers/mainPage');
 var db = require('../models');
+
+function authenticatedUser(req, res, next) {
+  // If user is authenticated then continue execution
+  if (req.isAuthenticated()) return next();
+  // Otherwise direct request back to the homepage
+  res.redirect('/');
+}
 
 /////////////// ROUTES ////////////////
 
@@ -28,12 +36,14 @@ router.route('/login')
 router.route("/logout")
   .get(usersController.getLogout)
 
-/////////// DB CRUD ROUTES /////////////////////
+// router.route('/userpage')
+// 	.get(pageController.mainPage)
 
-// define the root route
-// router.get('/', function(req, res) {
-// 	res.render('./views/index.ejs', { root : __dirname});
-// });
+router.get('/userpage', function(req, res) {
+	res.render('../views/userPage');
+});
+
+		/////////// DB CRUD ROUTES /////////////////////
 
 // get all trips
 router.get('/trips', function (req, res) {

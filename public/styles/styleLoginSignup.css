@@ -2,11 +2,10 @@
 	background-color: #CB904D;
 }
 
-[class^=col-6] {
+body {
 	background-color: rgba(81, 163, 163, .50);
 }
 
-.signup-form, .login-form {
-	padding: 20px;
-
+.login-form {
+	padding-top: 50px;
 }
