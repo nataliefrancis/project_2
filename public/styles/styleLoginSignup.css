@@ -1,0 +1,12 @@
+.navbar {
+	background-color: #CB904D;
+}
+
+[class^=col-6] {
+	background-color: rgba(81, 163, 163, .50);
+}
+
+.signup-form, .login-form {
+	padding: 20px;
+
+}
