@@ -25,3 +25,8 @@ body {
 #tripcards {
 	background-color: rgba(46, 28, 37, 0.7);
 }
+
+[class^=col] {
+	background-color: white;
+	color: black;
+}

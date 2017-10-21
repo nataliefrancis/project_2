@@ -74,7 +74,7 @@ function renderNewTrip(trip) {
   var tripHtml =
   "<div class ='col-4'>" +
     "<ul class = 'newtripcard'>"+
-      "<li><span class='tripcity'>"+trip.city+"</span></li>"+
+      "<li><span class='tripcity'>"+trip.place+"</span></li>"+
       "<li><span class='tripsights'>"+trip.sights+"</span></li>"+
       "<li><span class='tripfoods'>"+trip.foods+"</span></li>"+
       "<li><span class='tripactivities'>"+trip.activities+"</span></li>"+
