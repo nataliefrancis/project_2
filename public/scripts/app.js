@@ -58,12 +58,6 @@ $('#trip-form').submit(function(event) {
       renderNewTrip(trip);
       console.log(trip);
     });
-    // $.ajax({
-    //   method: 'POST',
-    //   url: '/userpage/trips',
-    //   data: formData,
-    //   success: renderNewTrip,
-    // });
     $(this).trigger("reset");
   });
 
@@ -73,12 +67,24 @@ function renderNewTrip(trip) {
 
   var tripHtml =
   "<div class ='col-4'>" +
+    // "<i class='fa fa-suitcase' aria-hidden='true'></i>"+
+        //List that populates from form
     "<ul class = 'newtripcard'>"+
-      "<li><span class='tripcity'>"+trip.place+"</span></li>"+
-      "<li><span class='tripsights'>"+trip.sights+"</span></li>"+
-      "<li><span class='tripfoods'>"+trip.foods+"</span></li>"+
-      "<li><span class='tripactivities'>"+trip.activities+"</span></li>"+
+      "<li><span class='tripcity'>City: "+trip.place+"</span></li>"+
+      "<li><span class='tripsights'>Sights: "+trip.sights+"</span></li>"+
+      "<li><span class='tripfoods'>Foods: "+trip.foods+"</span></li>"+
+      "<li><span class='tripactivities'>Activities: "+trip.activities+"</span></li>"+
     "</ul>"+
+        //buttons that populate on each trip card
+    "<div class='btn-group tripbuttons' data-toggle='buttons'>"+
+      "<label class='btn btn-secondary'>"+
+        "<input type='radio' name='edit' id='editbutton' autocomplete='off'> Edit"+
+      "</label>"+
+      "<label class='btn btn-secondary'>"+
+        "<input type='radio' name='delete' id='deletebutton' autocomplete='off'> Delete"+
+      "</label>"+
+    "</div>"+
+    
   "</div>";
 
   $('#tripcards').append(tripHtml);

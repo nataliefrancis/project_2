@@ -10,6 +10,9 @@
     <!-- Google fonts -->
   <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
 
+    <!--Icon link -->
+<!--   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+
     <!-- Vendor Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
@@ -36,25 +39,33 @@
       </nav>
   </div>
 
-      <!-- This is where the map will populate -->
-  <div class="map-color">    
-    <div id="map"></div>
-  </div>
+  <section class ="container map-form-container">
+    <div class="row">
 
-        <!-- Users fill out a new vacation form -->
-    <section class="container tripForm">
-        <form action="/userpage/trips" method="POST" id="trip-form">
-          <input type="text" placeholder="What city do you want to go to?" name="place"><br>
-          <input type="text" placeholder="What sights do you want to see?" name="sights"><br>
-          <input type="text" placeholder="Any special foods you want to eat?" name="foods"><br>
-          <input type="text" placeholder="Any special activities?" name="activities"><br>
-          <input type="submit">
-        </form>
-    </section>
+          <!-- This is where the map will populate -->
+      <div class="col-6 map-form-col">
+        <div class="map-color">    
+          <div id="map"></div>
+        </div>
+      </div>
 
+              <!-- Users fill out a new vacation form -->
+        <div class="col-6 map-form-col justtheform">
+          <form action="/userpage/trips" method="POST" id="trip-form">
+            <h3>Creat a new Trip Card</h3>
+            <input type="text" placeholder="What city do you want to go to?" name="place"><br>
+            <input type="text" placeholder="What sights do you want to see?" name="sights"><br>
+            <input type="text" placeholder="Any special foods you want to eat?" name="foods"><br>
+            <input type="text" placeholder="Any special activities?" name="activities"><br>
+            <input type="submit">
+          </form>
+        </div>
+    </div>
+  </section>
+ 
     <!-- the users saved trip cards populate here -->
     <div class="container-fluid">
-      <div class="container tripboxes">
+      <div class="container alltrips">
         <div class ="row" id="tripcards">
           
         </div>

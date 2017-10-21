@@ -7,26 +7,80 @@ body {
 .navbar {
 	margin-bottom: 30px;
 }
+	/* Container that holds that map and the form */
+.map-form-container {
+	margin: 0 auto;
+	background-color: #C3E991;
+}
+
+.map-form-col {
+	padding: 20px;
+}
 
 .map-color {
 	margin: 0 auto;
 }
 
-.tripForm {
-	width: 300px;
-}
-
+	/*Div that the map populates into */
 #map {
 	height: 400px;
-	width: 50%;
+	width: 500px;
 	margin: 0 auto;
 }
 
-#tripcards {
-	background-color: rgba(46, 28, 37, 0.7);
+	/*Centers the form*/
+.justtheform {
+	display: block;
+    text-align: center;
 }
 
-[class^=col] {
-	background-color: white;
-	color: black;
+	/*The form itself*/
+#trip-form {
+	display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    text-align: left;
 }
+
+h3 {
+	font-family: 'Permanent Marker', cursive;
+	padding-left: 5px;
+}
+	
+	/*Styles the form fields*/
+input {
+	width: 300px;
+	padding: 5px;
+	margin: 5px;
+}
+	/*Styles the form button*/
+input[type=submit] {
+	width: 100px;
+	background-color: #DFCC74;
+	border-radius: 15px;
+}
+
+/*Bottom of page, where the trip cards populate*/
+.alltrips {
+	background-color: rgba(46, 28, 37, 0.7);
+	margin-top: 30px;
+}
+
+	/*The trip cards themselves*/
+[class^=col-4] {
+	background-color: #DFCC74;
+	width: 200px;
+	height: 100%;
+	color: black;
+	padding: 10px;
+	margin: 20px;
+	border-radius: 15px;
+}
+
+	/*Buttons on the trip cards*/
+.tripbuttons {
+	margin-left: 25%;
+}
+
+
