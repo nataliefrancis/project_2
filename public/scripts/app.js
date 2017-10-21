@@ -54,9 +54,32 @@ $('#trip-form').submit(function(event) {
     event.preventDefault();
     var formData = $(this).serialize();
     console.log(formData);
-    $.post('/trips', formData, function(trip) {
-      // renderNewTrip(trip);
+    $.post('/userpage/trips', formData, function(trip) {
+      renderNewTrip(trip);
       console.log(trip);
     });
+    // $.ajax({
+    //   method: 'POST',
+    //   url: '/userpage/trips',
+    //   data: formData,
+    //   success: renderNewTrip,
+    // });
     $(this).trigger("reset");
   });
+
+  // renders a new trip on the page
+function renderNewTrip(trip) {
+  console.log('rendering trip ' +trip);
+
+  var tripHtml =
+  "<div class ='col-4'>" +
+    "<ul class = 'newtripcard'>"+
+      "<li><span class='tripcity'>"+trip.city+"</span></li>"+
+      "<li><span class='tripsights'>"+trip.sights+"</span></li>"+
+      "<li><span class='tripfoods'>"+trip.foods+"</span></li>"+
+      "<li><span class='tripactivities'>"+trip.activities+"</span></li>"+
+    "</ul>"+
+  "</div>";
+
+  $('#tripcards').append(tripHtml);
+ }
