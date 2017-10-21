@@ -46,7 +46,7 @@ router.get('/userpage', function(req, res) {
 		/////////// DB CRUD ROUTES /////////////////////
 
 // get all trips
-router.get('/trips', function (req, res) {
+router.get('/userpage/trips', function (req, res) {
 	db.Trip.find({}, function(err, trips) {
 		if (err) console.log(err);
 		else res.json(trips);
@@ -54,7 +54,7 @@ router.get('/trips', function (req, res) {
 });
 
 //get one trip
-router.get('/trips/:id', function (req, res) {
+router.get('/userpage/trips/:id', function (req, res) {
 	db.Trip.findOne({_id: req.params.id}, function(err, trip) {
 		if (err) console.log(err);
 		res.json(trip);
@@ -62,7 +62,7 @@ router.get('/trips/:id', function (req, res) {
 });
 
 //create a new trip
-router.post('/trips', function(req, res) {
+router.post('/userpage/trips', function(req, res) {
 	let newTrip = new db.Trip({
 		place: req.body.place,
 		sights: req.body.sights,
@@ -76,7 +76,7 @@ router.post('/trips', function(req, res) {
 });
 
 // update a trip
-// app.put('/trips/:id', function (req, res) {
+// app.put('/userpage/trips/:id', function (req, res) {
 // 	db.Trip.findOne({_id: req.params.id}, function(err, trip) {
 // 		if (err) console.log(err);
 // 		trip.place = req.body.city;
