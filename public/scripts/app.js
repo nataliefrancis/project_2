@@ -1,7 +1,7 @@
-console.log("app.js is ready");
+let userTrips = [];
 
 function initMap() {
-  
+    
 
   // Generates a new map, zoomed to country
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -47,10 +47,13 @@ function initMap() {
   }
 
 }
-  
-    //Upon submitting a new trip via form, adds to database
-    //then renders a new trip div on user's page
-$('#trip-form').submit(function(event) {
+
+$(document).ready(function() {
+  console.log("app.js is ready");
+
+      //Upon submitting a new trip via form, adds to database
+      //then renders a new trip div on user's page
+  $('#trip-form').submit(function(event) {
     event.preventDefault();
     var formData = $(this).serialize();
     console.log(formData);
@@ -61,31 +64,60 @@ $('#trip-form').submit(function(event) {
     $(this).trigger("reset");
   });
 
-  // renders a new trip on the page
-function renderNewTrip(trip) {
-  console.log('rendering trip ' +trip);
+    // renders a new trip on the page
+  function renderNewTrip(trip) {
+    console.log('rendering trip ' +trip);
+    userTrips.push(trip);
 
-  var tripHtml =
-  "<div class ='col-4'>" +
-    // "<i class='fa fa-suitcase' aria-hidden='true'></i>"+
-        //List that populates from form
-    "<ul class = 'newtripcard'>"+
-      "<li><span class='tripcity'>City: "+trip.place+"</span></li>"+
-      "<li><span class='tripsights'>Sights: "+trip.sights+"</span></li>"+
-      "<li><span class='tripfoods'>Foods: "+trip.foods+"</span></li>"+
-      "<li><span class='tripactivities'>Activities: "+trip.activities+"</span></li>"+
-    "</ul>"+
-        //buttons that populate on each trip card
-    "<div class='btn-group tripbuttons' data-toggle='buttons'>"+
-      "<label class='btn btn-secondary'>"+
-        "<input type='radio' name='edit' id='editbutton' autocomplete='off'> Edit"+
-      "</label>"+
-      "<label class='btn btn-secondary'>"+
-        "<input type='radio' name='delete' id='deletebutton' autocomplete='off'> Delete"+
-      "</label>"+
-    "</div>"+
-    
-  "</div>";
+    var tripHtml =
+    "<div class ='col-4' id='onetrip' data-id='" +trip._id+ "'>"+
+      // "<i class='fa fa-suitcase' aria-hidden='true'></i>"+
+          //List that populates from form
+      "<ul class = 'newtripcard'>"+
+        "<li><span class='tripcity'>City: "+trip.place+"</span></li>"+
+        "<li><span class='tripsights'>Sights: "+trip.sights+"</span></li>"+
+        "<li><span class='tripfoods'>Foods: "+trip.foods+"</span></li>"+
+        "<li><span class='tripactivities'>Activities: "+trip.activities+"</span></li>"+
+      "</ul>"+
+          //buttons that populate on each trip card
+      "<div class='btn-group tripbuttons' data-toggle='buttons'>"+
+        "<label class='btn btn-secondary'>"+
+          "<input type='radio' name='edit' id='editbutton' autocomplete='off'> Edit"+
+        "</label>"+
+        // "<label class='btn btn-secondary'>"+
+        //   "<input type='radio' name='delete' id='deletebutton' autocomplete='off'> Delete"+
+        // "</label>"+
+        "<button type='button' id='deletebutton'>Delete</button>"+
+      "</div>"+
 
-  $('#tripcards').append(tripHtml);
- }
+    "</div>";
+
+    $('#tripcards').append(tripHtml);
+   }
+
+  //Sends to delete a tripcard on the backend
+  $('#deletebutton').click(function() {
+    let id= $(this).data('id');
+    console.log('Deleting trip id ', id);
+    $.ajax({
+      method: 'DELETE',
+      url: '/userpage/trips/'+id,
+      success: deleteTrip
+    });
+  });
+
+  //Deletes a book on the front end by looping through their trip array
+  function deleteTrip(deletedTrip) {
+    let oneTrip = deletedTrip;
+    let tripId = deletedTrip._id;
+    for(let i=0; i< userTrips.length; i++) {
+      if(userTrips[i]._id === tripId) {
+        userTrips.splice(i, 1);
+        break;
+      }
+    }
+    render();
+  }
+});
+
+

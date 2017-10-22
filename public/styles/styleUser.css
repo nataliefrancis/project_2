@@ -68,7 +68,7 @@ input[type=submit] {
 }
 
 	/*The trip cards themselves*/
-[class^=col-4] {
+#onetrip {
 	background-color: #DFCC74;
 	width: 200px;
 	height: 100%;

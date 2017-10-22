@@ -75,6 +75,14 @@ router.post('/userpage/trips', function(req, res) {
 	});
 });
 
+// Delete a trip
+router.delete('/userpage/trips/:id', function(req, res) {
+	let tripId = req.params.id;
+	db.Trip.findOneAndRemove({_id: tripId}, function(err, deletedTrip) {
+		res.json(deletedTrip);
+	});
+});
+
 // update a trip
 // app.put('/userpage/trips/:id', function (req, res) {
 // 	db.Trip.findOne({_id: req.params.id}, function(err, trip) {
