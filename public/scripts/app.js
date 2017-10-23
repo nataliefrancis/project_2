@@ -1,12 +1,12 @@
 let userTrips = [];
 let userId;
 
+// Generates the google map
 function initMap() {
     
   // Generates a new map, zoomed to country
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 3,
-      //starting location is Denver
+    zoom: 3,  //starting location is Denver
     center: {lat: 39.742043, lng: -104.991531}
   });
 
@@ -16,8 +16,7 @@ function initMap() {
   });
 
   function placeMarkerAndPanTo(latLng, map) {
-    //Type of marker
-    var marker = new google.maps.Marker({
+    var marker = new google.maps.Marker({   //Type of marker
       position: latLng,
       map: map
     });
@@ -26,9 +25,9 @@ function initMap() {
     map.panTo(latLng);
 
        //when the marker is clicked, a box opens
-    google.maps.event.addListener(map, 'click', function(event) {
-      placeMarker(map, event.latLng);
-    });
+    // google.maps.event.addListener(map, 'click', function(event) {
+    //   placeMarker(map, event.latLng);
+    // });
 
     function placeMarker(map, location) {
       var marker = new google.maps.Marker({
@@ -39,9 +38,12 @@ function initMap() {
       var infowindow = new google.maps.InfoWindow({
         content: 'Latitude: ' + location.lat() +
         '<br>Longitude: ' + location.lng()
+        // document.getElementById('city')
       });
 
-      infowindow.open(map, marker);
+      google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map, marker);
+          });
     }
       
   }
@@ -51,7 +53,7 @@ function initMap() {
 $(document).ready(function() {
   console.log("app.js is ready");
 
-    // Gets the user's id to use
+    // Gets the user's ID and stores it in the front end
   $.ajax({
     method: 'GET',
     url: '/user',
@@ -97,7 +99,7 @@ $(document).ready(function() {
       // "<i class='fa fa-suitcase' aria-hidden='true'></i>"+
           //List that populates from form
       "<ul class = 'newtripcard' style='list-style-type:none'>"+
-        "<li><h3>"+trip.place+"</h3></li>"+
+        "<li><h3 id='city'>"+trip.place+"</h3></li>"+
         "<li><span class='tripsights'>Sights: "+trip.sights+"</span></li>"+
         "<li><span class='tripfoods'>Foods: "+trip.foods+"</span></li>"+
         "<li><span class='tripactivities'>Activities: "+trip.activities+"</span></li>"+
