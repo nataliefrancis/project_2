@@ -1,5 +1,7 @@
 let userTrips = [];
 let userId;
+let $tripcards;
+let template;
 
 // Generates the google map
 function initMap() {
@@ -120,74 +122,97 @@ $(document).ready(function() {
     }
   });
 
-      //Upon submitting a new trip via form, adds to database
-      //then renders a new trip div on user's page
-  $('#trip-form').submit(function(event) {
-    event.preventDefault();
-    var formData = $(this).serialize();
-    console.log(formData);
-    $.post('/userpage/trips', formData, function(trip) {
-      renderNewTrip(trip);
-      console.log(trip);
+  $tripcards = $('#tripcards');
+
+  //compile handlebars template
+  let source = $('#trip-template').html();
+  template = Handlebars.compile(source);
+
+  
+    //This gets all trips, not currently user specific
+  $.ajax({
+      method: 'GET',
+      url: '/userpage/trips',
+      success: handleSuccess,
+      error: handleError
     });
-    $(this).trigger("reset");
-  });
 
-    // renders a new trip on the page
-  function renderNewTrip(trip) {
-    console.log('rendering trip ' +trip._id);
-    // userTrips.push(trip); not sure I need this anymore
-    var tripHtml =
-    "<div class ='col-4 onetrip' id="+trip._id+">"+
-      // "<i class='fa fa-suitcase' aria-hidden='true'></i>"+
-          //List that populates from form
-      "<ul class = 'newtripcard' style='list-style-type:none'>"+
-        "<li><h3 id='city'>"+trip.place+"</h3></li>"+
-        "<li><span class='tripsights'>Sights: "+trip.sights+"</span></li>"+
-        "<li><span class='tripfoods'>Foods: "+trip.foods+"</span></li>"+
-        "<li><span class='tripactivities'>Activities: "+trip.activities+"</span></li>"+
-      "</ul>"+
-          //buttons that populate on each trip card
-      "<div class='btn-group tripbuttons'>"+
-        "<button type='button' id='editbutton' data-id='" +trip._id+ "'>Edit</button>"+
-        "<button type='button' id='deletebutton' data-id='" +trip._id+ "'>Delete</button>"+
-      "</div>"+
+      //When a new trip is submitted via form
+    $('#trip-form').on('submit', function(event) {
+      event.preventDefault();
+      console.log('new trip serialized', $(this).serializeArray());
+      $.ajax({
+        method: 'POST',
+        url: '/userpage/trips',
+        data: $(this).serializeArray(),
+        success: newTripSuccess,
+        error: newTripError
+      });
+    });
 
-    "</div>";
-
-    $('#tripcards').append(tripHtml);
-
-      //Sends to delete a tripcard on the backend
-    $('#deletebutton').click(function() {
-      let id= $(this).data('id');
-      console.log('Deleting trip id ', id);
+      //When a tripcard delete button is clicked
+    $tripcards.on('click', '#deletebutton', function() {
+      console.log('clicked delete button for ' +$(this).attr('data-id'));
+      let id = $(this).attr('data-id');
       $.ajax({
         method: 'DELETE',
         url: '/userpage/trips/'+id,
-        success: deleteTrip
+        success: deleteTripSuccess,
+        error: deleteTripError
       });
-      return;
     });
 
-      //Deletes a book on the front end by looping through their trip array
-    function deleteTrip(deletedTrip) {
-      console.log(deletedTrip);
-      let oneTrip = deletedTrip;
-      let tripId = deletedTrip._id;
-      // for(let i=0; i< userTrips.length; i++) {
-      //   if(userTrips[i]._id === tripId) {
-      //     userTrips.splice(i, 1);    not sure I need this anymore
-      removeTripcard(tripId);
-          // break;
-        // }
-      return;
-    }
+}); // <-- end of document.ready
 
-      function removeTripcard(tripId) {
-        $('#'+tripId).remove();
-      }
-    // }
+  // helper function to render all posts to view, it re-renders each time we call it
+  function render () {
+    $tripcards.empty(); // empty existing posts from view
+    let tripHtml = template({ trip: userTrips });   // pass the user trips into the handlebars template
+    $tripcards.append(tripHtml);    // append html to the view
   }
-});
+
+  function handleSuccess(json) {
+    userTrips = json;
+    render();
+  }
+
+  function handleError(e) {
+    console.log('Something went wrong getting all trips.');
+    $('#tripcards').text('Failed to load trips, is the server working?');
+  }
+
+  function newTripSuccess(trip) {
+    $('#trip-form input').val('');
+    userTrips.push(trip);
+    render();
+  }
+
+  function newTripError() {
+    console.log('newtrip error!');
+  }
+
+  function deleteTripSuccess(trip) {
+    let delTrip = trip;
+    console.log(trip);
+    var tripId = trip._id;
+    console.log('delete trip', tripId);
+    // find the trip with the correct ID and remove it from the usertrip array
+    for(var i = 0; i < userTrips.length; i++) {
+      if(userTrips[i]._id === tripId) {
+        userTrips.splice(i, 1);
+        break; 
+      }
+    }
+    render();
+  }
+
+  function deleteTripError() {
+    console.log('deletetrip error!');
+  }
 
 
+
+
+
+
+ 
