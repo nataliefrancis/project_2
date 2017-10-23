@@ -1,6 +1,7 @@
 body {
 	background: #CB904D;
     background: linear-gradient(to bottom right, #CB904D, #FFFFFF);
+    background-size: cover;
 }
 
 p, h1 {
@@ -12,4 +13,8 @@ p, h1 {
 	min-height: 100px;
 	padding: 20px;
 
+}
+
+.signup-form {
+	text-align: right;
 }

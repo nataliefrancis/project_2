@@ -20,6 +20,7 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser()); 
 
+app.use(session({ secret: 'I am not sure what this is' })); 
 app.set('views', __dirname + '/views');
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');

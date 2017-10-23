@@ -1,11 +1,16 @@
+body {
+	background-color: #DFCC74;
+}
+
 .navbar {
 	background-color: #CB904D;
 }
 
-body {
-	background-color: rgba(81, 163, 163, .50);
+h2 {
+	text-align: center;
+	padding-top: 50px;
 }
 
-.login-form {
-	padding-top: 50px;
+.loginsignup {
+	width: 50%;
 }

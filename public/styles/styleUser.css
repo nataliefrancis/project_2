@@ -59,6 +59,7 @@ input[type=submit] {
 	width: 100px;
 	background-color: #DFCC74;
 	border-radius: 15px;
+	outline: none;
 }
 
 /*Bottom of page, where the trip cards populate*/

@@ -25,6 +25,9 @@ function authenticatedUser(req, res, next) {
 router.route('/')
   .get(staticsController.home);
 
+router.route('/user')
+	.get(usersController.getUser)
+
 router.route('/signup')
   .get(usersController.getSignup)
   .post(usersController.postSignup)
@@ -36,12 +39,12 @@ router.route('/login')
 router.route("/logout")
   .get(usersController.getLogout)
 
-// router.route('/userpage')
-// 	.get(pageController.mainPage)
+router.route('/userpage')
+	.get(pageController.mainPage)
 
-router.get('/userpage', function(req, res) {
-	res.render('../views/userPage');
-});
+// router.get('/userpage', function(req, res) {
+// 	res.render('../views/userPage');
+// });
 
 		/////////// DB CRUD ROUTES /////////////////////
 
@@ -68,6 +71,7 @@ router.post('/userpage/trips', function(req, res) {
 		sights: req.body.sights,
 		foods: req.body.foods,
 		activities: req.body.activities,
+		// user: res.locals.currentUser._id
 	});
 	newTrip.save(function(err, trip) {
 		if (err) console.log(err);

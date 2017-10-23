@@ -1,5 +1,11 @@
 var passport = require("passport");
 
+// GET user - sending user info to the front end
+function getUser(request, response) {
+	if (request.user) { response.send(request.user._id); }
+	else { response.send(""); }
+}
+
 // GET /signup
 function getSignup(request, response, next) {
 	response.render('signup', {message : request.flash('signupMessage')});
@@ -43,9 +49,10 @@ function secret(request, response){
 }
 
 module.exports = {
-  getLogin: getLogin,
-  postLogin: postLogin ,
-  getSignup: getSignup,
-  postSignup: postSignup,
-  getLogout: getLogout,
+	getUser: getUser,
+	getLogin: getLogin,
+	postLogin: postLogin ,
+	getSignup: getSignup,
+	postSignup: postSignup,
+	getLogout: getLogout,
 };

@@ -7,7 +7,7 @@ var TripSchema = new Schema({
 	sights: String,
 	foods: String,
 	activities: String,
-	// user: {type: Schema.Types.ObjectId, ref: 'User'}
+	// user: Number
 });
 
 var Trip = mongoose.model('Trip', TripSchema);
