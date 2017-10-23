@@ -68,7 +68,24 @@
     <div class="container-fluid">
       <div class="container alltrips">
         <div class ="row" id="tripcards">
-          
+                  <!-- tripcard handlebars template -->
+            <script id="trip-template" type="text/x-handlebars-template">
+            {{#each trip}}
+            <div class ='col-4 onetrip'>
+              <ul class = 'newtripcard' style='list-style-type:none'>
+                <li><h3 id='city'>{{place}}</h3></li>
+                <li><span class='tripsights'>Sights: {{sights}}</span></li>
+                <li><span class='tripfoods'>Foods: {{foods}}</span></li>
+                <li><span class='tripactivities'>Activities: {{activities}}</span></li>
+              </ul>
+              <div class='btn-group tripbuttons'>
+                <button type='button' id='editbutton' data-id={{_id}}>Edit</button>
+                <button type='button' id='deletebutton' data-id={{_id}}>Delete</button>
+              </div>
+            </div>
+            {{/each}}
+            </script>
+
         </div>
       </div>
     </div>

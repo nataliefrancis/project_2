@@ -130,21 +130,6 @@ $(document).ready(function() {
       renderNewTrip(trip);
       console.log(trip);
     });
-    // $.ajax({
-    //   method: 'POST',
-    //   url: '/userpage/trips',
-    //   data: {
-    //     place: formData.place,
-    //     sights: formData.sights,
-    //     foods: formData.foods,
-    //     activities: formData.activities,
-    //     // user: userId
-    //     },
-    //   success: function(trip) {
-    //     renderNewTrip(trip);
-    //     console.log(trip);
-    //   }
-    // });
     $(this).trigger("reset");
   });
 
