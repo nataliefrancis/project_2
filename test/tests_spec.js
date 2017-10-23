@@ -1,5 +1,6 @@
 const expect = require('chai').expect;
 const request = require('request');
+// let tripModel = require('./models/trip');
 
 var baseURL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA8MjE8GAbJYYoJl77bJckRqYvANrVt1D8&callback=initMap';
 
@@ -19,3 +20,16 @@ describe("Server should be running", function() {
 		});
 	});
 });
+
+// describe("Testing models", function() {
+// 	let trip = new Trip ({
+// 		place: 'city',
+// 		sights: 'cool sights',
+// 		foods: 'yummy food',
+// 		activities: 'doing something fun'
+// 	});
+// 	it("should yeild an object", function(error, response, body) {
+// 		expect({body}).to.be.an('object');
+// 	});
+
+// });
