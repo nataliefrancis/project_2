@@ -140,14 +140,17 @@ $(document).ready(function() {
       //When a new trip is submitted via form
     $('#trip-form').on('submit', function(event) {
       event.preventDefault();
-      console.log('new trip serialized', $(this).serializeArray());
+      let formData = $(this).serialize();
+      console.log('new trip');
+      console.log(formData);
       $.ajax({
         method: 'POST',
         url: '/userpage/trips',
-        data: $(this).serializeArray(),
+        data: formData,
         success: newTripSuccess,
         error: newTripError
       });
+      $(this).trigger("reset");
     });
 
       //When a tripcard delete button is clicked
@@ -164,51 +167,56 @@ $(document).ready(function() {
 
 }); // <-- end of document.ready
 
-  // helper function to render all posts to view, it re-renders each time we call it
-  function render () {
-    $tripcards.empty(); // empty existing posts from view
-    let tripHtml = template({ trip: userTrips });   // pass the user trips into the handlebars template
-    $tripcards.append(tripHtml);    // append html to the view
-  }
+// helper function to render all posts to view, it re-renders each time we call it
+function render () {
+  $tripcards.empty(); // empty existing posts from view
+  let tripHtml = template({ trip: userTrips });   // pass the user trips into the handlebars template
+  $tripcards.append(tripHtml);    // append html to the view
+}
 
-  function handleSuccess(json) {
-    userTrips = json;
-    render();
-  }
+  //pets all of the users trips into an array on the front end
+function handleSuccess(trip) {
+  userTrips = trip;
+  render();
+}
 
-  function handleError(e) {
-    console.log('Something went wrong getting all trips.');
-    $('#tripcards').text('Failed to load trips, is the server working?');
-  }
+function handleError(e) {
+  console.log('Something went wrong getting all trips.');
+  $('#tripcards').text('Failed to load trips, is the server working?');
+}
 
-  function newTripSuccess(trip) {
-    $('#trip-form input').val('');
-    userTrips.push(trip);
-    render();
-  }
+  //When the form submission is successful, 
+  //pushes new trip on the page and renders new trip
+function newTripSuccess(trip) {
+  console.log("new trip success " +trip);
+  $('.form-field').val('');
+  userTrips.push(trip);
+  render();
+}
 
-  function newTripError() {
-    console.log('newtrip error!');
-  }
+function newTripError() {
+  console.log('newtrip error!');
+}
 
-  function deleteTripSuccess(trip) {
-    let delTrip = trip;
-    console.log(trip);
-    var tripId = trip._id;
-    console.log('delete trip', tripId);
-    // find the trip with the correct ID and remove it from the usertrip array
-    for(var i = 0; i < userTrips.length; i++) {
-      if(userTrips[i]._id === tripId) {
-        userTrips.splice(i, 1);
-        break; 
-      }
+  //when a tripcard is deleted, it deletes from the array and removes from the page
+function deleteTripSuccess(trip) {
+  let delTrip = trip;
+  console.log(trip);
+  var tripId = trip._id;
+  console.log('delete trip', tripId);
+  // finds the trip with the correct ID and removes it from the usertrip array
+  for(var i = 0; i < userTrips.length; i++) {
+    if(userTrips[i]._id === tripId) {
+      userTrips.splice(i, 1);
+      break; 
     }
-    render();
   }
+  render();
+}
 
-  function deleteTripError() {
-    console.log('deletetrip error!');
-  }
+function deleteTripError() {
+  console.log('deletetrip error!');
+}
 
 
 

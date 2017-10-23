@@ -7,7 +7,13 @@ body {
 .navbar {
 	margin-bottom: 30px;
 }
+
+.nav-item {
+	display: inline;
+	float: right;
+}
 	/* Container that holds that map and the form */
+
 .map-form-container {
 	margin: 0 auto;
 	background-color: #C3E991;
