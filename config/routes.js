@@ -88,16 +88,16 @@ router.delete('/userpage/trips/:id', function(req, res) {
 });
 
 // update a trip
-// app.put('/userpage/trips/:id', function (req, res) {
-// 	db.Trip.findOne({_id: req.params.id}, function(err, trip) {
-// 		if (err) console.log(err);
-// 		trip.place = req.body.city;
-// 		trip.sights = req.body.sights;
-// 		trip.foods = req.body.foods;
-// 		trip.activities = req.body.activities;
-// 		trip.save();
-// 		res.json(trip);
-// 	});
-// });
+router.put('/userpage/trips/:id', function (req, res) {
+	db.Trip.findOne({_id: req.params.id}, function(err, trip) {
+		if (err) console.log(err);
+		trip.place = req.body.place;
+		trip.sights = req.body.sights;
+		trip.foods = req.body.foods;
+		trip.activities = req.body.activities;
+		trip.save();
+		res.json(trip);
+	});
+});
 
 module.exports = router
