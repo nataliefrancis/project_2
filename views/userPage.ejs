@@ -29,10 +29,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">My Places</a>
+              <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
@@ -47,7 +44,8 @@
 
           <!-- This is where the map will populate -->
       <div class="col-6 map-form-col">
-        <div class="map-color">    
+        <div class="map-color">
+          <input id="pac-input" class="controls" type="text" placeholder="Search Box">    
           <div id="map"></div>
         </div>
       </div>
@@ -78,8 +76,9 @@
 
       <!-- Google map scripts -->
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8MjE8GAbJYYoJl77bJckRqYvANrVt1D8&callback=initMap">
-    </script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8MjE8GAbJYYoJl77bJckRqYvANrVt1D8&callback=initMap"></script>
+    <!--
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8MjE8GAbJYYoJl77bJckRqYvANrVt1D8&libraries=places"></script> -->
 
       <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
