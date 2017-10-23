@@ -5,7 +5,7 @@ Wanderlist is like a digital bucket list. Users can input details of trips and s
 their places on a map, sort of like a cork board, so that they can view their wish list as a map of places.
 
 ## Installation
-You'll want to install:
+Node modules: express, body-parser, method-override, passport, mongoose, bcrypt-nodejs, connect-flash, morgan, cookie-parser, express-session
 
 ## Approach taken
 I admit I had to redo this app. I originally started in the backend, getting my database running, then jumped to the front end
