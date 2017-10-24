@@ -23,7 +23,10 @@ As of right now, the database works and the CRUD routes work but the user can't 
 [Link to my Trello](https://trello.com/b/fKfXjHlF/project-2)
 
 ## Wireframes
-[Link to my wireframes](../wireframes)
+[Link to my wireframes](./wireframes)
+
+## Prototype (just index page)
+[Link to my Index prototype](./wireframes/prototypes)
 
 ## Heroku deployment
 [Link to my Heroku](https://shrouded-refuge-49977.herokuapp.com/)
