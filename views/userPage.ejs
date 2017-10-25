@@ -2,22 +2,25 @@
 <html>
 <head>
   <title>Welcome</title>
-  <!-- Bootstrap styling -->
+
+      <!-- Bootstrap styling -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <!-- Style sheet -->
+
+      <!-- Style sheet -->
   <link rel="stylesheet" href="../../styles/styleUser.css">
 
-    <!-- Google fonts -->
+      <!-- Google fonts -->
   <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
 
     <!--Icon link -->
 <!--   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
 
-    <!-- Vendor Scripts -->
+      <!-- Vendor Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
 </head>
+
 <body>
       <!-- Navigation bar at top -->
   <div class = 'container'>
@@ -68,49 +71,61 @@
     <div class="container-fluid">
       <div class="container alltrips">
         <div class ="row" id="tripcards">
+
                   <!-- tripcard handlebars template -->
-            <script id="trip-template" type="text/x-handlebars-template">
+          <script id="trip-template" type="text/x-handlebars-template">
             {{#each trip}}
             <div class ='col-4 onetrip'>
+
               <ul class = 'newtripcard' style='list-style-type:none'>
                 <li><h3 id='city'>{{place}}</h3></li>
                 <li><span class='tripsights'>Sights: {{sights}}</span></li>
                 <li><span class='tripfoods'>Foods: {{foods}}</span></li>
                 <li><span class='tripactivities'>Activities: {{activities}}</span></li>
               </ul>
-              <div class='btn-group tripbuttons'>
-                
 
-                 <!-- Modal -->
-                <button type='button' id='editbutton' class="btn" data-toggle="modal" data-target="#Modal" data-id={{_id}}>Edit</button>
-                <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        ...
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div class='btn-group tripbuttons'>
+                <button type='button' id='editbutton' data-toggle="modal" data-target="#editModal" data-id={{_id}}>Edit</button>
                 <button type='button' id='deletebutton' data-id={{_id}}>Delete</button>
               </div>
+
+                    <!-- Beginning of modal for edit button, not visible till .modal() is called -->
+              <div class="modal fade" tabindex="-1" role="dialog" id="editModal" hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content content-box">
+
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+
+                      <h2 class="modal-title sub-header">Edit trip</h2>
+                    </div>
+
+                    <div class="modal-body">
+                      <div class="form-group" id="edit-trip">
+                        <input type="text" class="input edit-field" placeholder="Edit place" name="place">
+                        <input type="text" class="input edit-field" placeholder="Edit sights" name="sights">
+                        <input type="text" class="input edit field" placeholder="Edit foods" name="foods">
+                        <input type="text" class="input edit field" placeholder="Edit activities" name="activities">
+                      </div>            
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="save-btn" id="save-button">Save</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+                    <!-- End of modal -->
             </div>
             {{/each}}
-            </script>
-
+          </script>
+                <!-- End of handlebars template -->
         </div>
       </div>
-    </div>
+    </div> <!-- end of container-fluid -->
 
 
       <!-- Google map scripts -->

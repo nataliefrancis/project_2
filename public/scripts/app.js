@@ -165,7 +165,35 @@ $(document).ready(function() {
       });
     });
 
+    //Click for an edit model
+  $(document).on('click', '#editbutton', function() {
+      tripId = $(this).attr('data-id');
+      $('#edit-trip').val("Make Some Changes");
+      $('#editModal').modal();
+    });
+
 }); // <-- end of document.ready
+
+
+
+    //When the new trip info is saved
+$('#save-button').on('click', function() {
+    let newTrip = $('#edit-trip').val('');
+    let tripId = $(this).attr('data-id');
+    $.ajax({
+      type: 'PUT',
+      url: '/userpage/trips/' +tripId,
+      data:({
+        place: newTrip.place,
+        sights: newTrip.sights,
+        foods: newTrip.foods,
+        activities: newTrip.activities
+      })
+    });
+
+    alert("Saved!");
+    $('#commentModal').modal('hide');
+  });
 
 // helper function to render all posts to view, it re-renders each time we call it
 function render () {
@@ -174,7 +202,7 @@ function render () {
   $tripcards.append(tripHtml);    // append html to the view
 }
 
-  //pets all of the users trips into an array on the front end
+  //puts all of the users trips into an array on the front end
 function handleSuccess(trip) {
   userTrips = trip;
   render();
@@ -217,10 +245,5 @@ function deleteTripSuccess(trip) {
 function deleteTripError() {
   console.log('deletetrip error!');
 }
-
-
-
-
-
 
  

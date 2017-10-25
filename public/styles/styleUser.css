@@ -12,7 +12,7 @@ body {
 	display: inline;
 	float: right;
 }
-	/* Container that holds that map and the form */
+/* Container that holds that map and the form */
 
 .map-form-container {
 	margin: 0 auto;
@@ -105,6 +105,8 @@ body {
 #target {
 	width: 345px;
 }
+	/*End of map styling */
+
 
 /*Centers the form*/
 .justtheform {
@@ -140,6 +142,9 @@ input[type=submit] {
 	outline: none;
 }
 
+/*End of map-form styling container */
+
+
 /*Bottom of page, where the trip cards populate*/
 .alltrips {
 	background-color: rgba(46, 28, 37, 0.7);
@@ -162,4 +167,64 @@ input[type=submit] {
 	margin-left: 25%;
 }
 
+	/*MODAL*/
+.modal-content {
+	position: absolute;
+	background-color: white;
+	border: black 2px solid;
+	z-index: 999;
+	width: 30%;
+	text-align: center;
+	margin-top: -20%;
+}
+
+.modal-dialogue {
+	width: 30%;
+}
+
+#editModal {
+	width: 30%;
+}
+
+.modal-header {
+	height: 15%;
+}
+
+.modal-title {
+	margin-top: 5%;
+	margin-bottom: 2%;
+}
+
+	/*Input fields on modal */
+.edit-field {
+	font-family: 'Montserrat', sans-serif;
+	color: black;
+	border-color: rgba(46, 119, 201, .9);
+	border-style: solid;
+	border-width: 2px;
+}
+
+	/* Close button on modal */
+.close {
+	float: left;
+	background-color: red;
+	font-size: 15px;
+	border: none;
+	margin-left: 5px;
+	margin-top: -8px;
+}
+
+#save-button {
+	font-family: 'Montserrat', sans-serif;
+  color: black;
+  width: 30%;
+  height: 100%;
+  margin-left: 2%;
+  font-size: 80%;
+  margin-top: 5%;
+  background-color: rgba(46, 119, 201, .9);
+  margin-bottom: 5%;
+  border-radius: 3px;
+  border-style: none;
+}
 
