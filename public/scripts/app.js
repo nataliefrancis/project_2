@@ -118,7 +118,6 @@ $(document).ready(function() {
     url: '/user',
     success: function(result) {
       userId = result;
-      console.log(userId);
     }
   });
 
@@ -172,28 +171,32 @@ $(document).ready(function() {
       $('#editModal').modal();
     });
 
-}); // <-- end of document.ready
+  $(document).on('click', '#saveButton', function() {
 
+  // save new form values values into variables
+    place = $('#place').val();
+    sights = $('#sights').val();
+    foods = $('#foods').val();
+    activities = $('#activities').val();
 
-
-    //When the new trip info is saved
-$('#save-button').on('click', function() {
-    let newTrip = $('#edit-trip').val('');
-    let tripId = $(this).attr('data-id');
-    $.ajax({
-      type: 'PUT',
-      url: '/userpage/trips/' +tripId,
-      data:({
-        place: newTrip.place,
-        sights: newTrip.sights,
-        foods: newTrip.foods,
-        activities: newTrip.activities
-      })
+      let editedTrip = $('#edit-trip').val();
+      $.ajax({
+        type: 'PUT',
+        url: '/userpage/trips/'+tripId,
+        data:({ 
+                id: tripId,
+                place: place,
+                sights: sights,
+                foods: foods,
+                activities: activities
+              })
+      });
+      $('#edit-trip').val("Make some changes");
+      $('#editModal').modal('hide');
+      render();
     });
 
-    alert("Saved!");
-    $('#commentModal').modal('hide');
-  });
+}); // <-- end of document.ready
 
 // helper function to render all posts to view, it re-renders each time we call it
 function render () {

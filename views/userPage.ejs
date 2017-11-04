@@ -23,7 +23,7 @@
 
 <body>
       <!-- Navigation bar at top -->
-  <div class = 'container'>
+  <div class = 'container-fullwidth'>
       <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <span class="navbar-brand">Wanderlist</span>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,40 +85,9 @@
               </ul>
 
               <div class='btn-group tripbuttons'>
-                <button type='button' id='editbutton' data-toggle="modal" data-target="#editModal" data-id={{_id}}>Edit</button>
+                <button type='button' id='editbutton' data-id={{_id}}>Edit</button>
                 <button type='button' id='deletebutton' data-id={{_id}}>Delete</button>
               </div>
-
-                    <!-- Beginning of modal for edit button, not visible till .modal() is called -->
-              <div class="modal fade" tabindex="-1" role="dialog" id="editModal" hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content content-box">
-
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-
-                      <h2 class="modal-title sub-header">Edit trip</h2>
-                    </div>
-
-                    <div class="modal-body">
-                      <div class="form-group" id="edit-trip">
-                        <input type="text" class="input edit-field" placeholder="Edit place" name="place">
-                        <input type="text" class="input edit-field" placeholder="Edit sights" name="sights">
-                        <input type="text" class="input edit field" placeholder="Edit foods" name="foods">
-                        <input type="text" class="input edit field" placeholder="Edit activities" name="activities">
-                      </div>            
-                    </div>
-
-                    <div class="modal-footer">
-                      <button type="button" class="save-btn" id="save-button">Save</button>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-                    <!-- End of modal -->
             </div>
             {{/each}}
           </script>
@@ -126,6 +95,64 @@
         </div>
       </div>
     </div> <!-- end of container-fluid -->
+
+          <!-- Beginning of modal for edit button, not visible till .modal() is called -->
+    <div class="modal" tabindex="-1" role="dialog" id="editModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content content-box">
+
+          <div class="modal-header">
+            
+            <h2 class="modal-title sub-header">Edit trip</h2>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+          </div>
+
+          <div class="modal-body">
+            <div class="form-group" id="edit-trip">
+              <input type="text" class="input edit-field" id ="place" placeholder="Edit place" name="place">
+              <input type="text" class="input edit-field" id="sights" placeholder="Edit sights" name="sights">
+              <input type="text" class="input edit field" id="foods" placeholder="Edit foods" name="foods">
+              <input type="text" class="input edit field" id="activities" placeholder="Edit activities" name="activities">
+            </div>            
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="save-btn" id="saveButton">Save</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- <div class="modal fade" tabindex="-1" role="dialog"id ="editModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content content-box">
+
+          <div class="modal-header">
+            <h5 class="modal-title">Edit trip</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group" id="edit-trip">
+              <input type="text" class="input edit-field" placeholder="Edit place" name="place">
+              <input type="text" class="input edit-field" placeholder="Edit sights" name="sights">
+              <input type="text" class="input edit field" placeholder="Edit foods" name="foods">
+              <input type="text" class="input edit field" placeholder="Edit activities" name="activities">
+            </div> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="save-btn" id"save-button">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+          <!-- End of modal -->
 
 
       <!-- Google map scripts -->
